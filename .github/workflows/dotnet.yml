@@ -36,8 +36,7 @@ jobs:
         path: output/
 
     # Deploy to Azure Web apps
-        
-      name: Sample Azure action
+    name: Sample Azure action
       with: 
       credentials: ${{ secrets.AZURE_CREDENTIALS }}
       env: 
