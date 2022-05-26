@@ -1,3 +1,4 @@
+
 name: .NET Core
 
 on:
@@ -8,9 +9,8 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: pipeline1    
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      
+  AZURE_WEBAPP_PACKAGE_PATH: '.'     
   DOTNET_VERSION: '3.1.419'           
-
 jobs:
   build:
 
@@ -36,11 +36,11 @@ jobs:
         path: output/
 
     # Deploy to Azure Web apps
-    steps:
-  - name: Sample Azure action
-    with: 
+        
+      name: Sample Azure action
+      with: 
       credentials: ${{ secrets.AZURE_CREDENTIALS }}
-    env: 
+      env: 
       credentials: ${{ secrets.AZURE_CREDENTIALS }}
     
     - name: 'AzureLoginWithNoSubscriptions'
@@ -49,13 +49,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         allow-no-subscriptions: true
-    
-    - name: 'Run Azure webapp deploy action using publish profile credentials'  
-      
+    - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
       with: 
         app-name: ${{ env.pipeline1 }} 
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} 
         package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
-
- 
