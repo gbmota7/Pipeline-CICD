@@ -36,7 +36,14 @@ jobs:
         path: output/
 
     # Deploy to Azure Web apps
-    - name: 'Run Azure webapp deploy action using publish profile credentials'
+    - name: 'AzureLoginWithNoSubscriptions'
+      
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        allow-no-subscriptions: true
+    
+    - name: 'Run Azure webapp deploy action using publish profile credentials'  
       
       uses: azure/webapps-deploy@v2
       with: 
@@ -44,7 +51,4 @@ jobs:
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} 
         package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
 
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        allow-no-subscriptions: true
+ 
