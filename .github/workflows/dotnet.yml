@@ -36,6 +36,13 @@ jobs:
         path: output/
 
     # Deploy to Azure Web apps
+    steps:
+  - name: Sample Azure action
+    with: 
+      credentials: ${{ secrets.AZURE_CREDENTIALS }}
+    env: 
+      credentials: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - name: 'AzureLoginWithNoSubscriptions'
       
       uses: azure/login@v1
