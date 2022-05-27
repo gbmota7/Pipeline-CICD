@@ -42,13 +42,6 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         allow-no-subscriptions: true
     
-    - name: Sample Azure action
-      uses: azure/login@v1
-      with: 
-        credentials: ${{ secrets.AZURE_CREDENTIALS }}
-      env: 
-        credentials: ${{ secrets.AZURE_CREDENTIALS }}
-    
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
       with: 
